@@ -39,7 +39,7 @@ if (Astro.request.method === "POST") {
   if (success) {
     await sdk.setShippingMethod(
       { id: cleanData.shippingMethod as string },
-      { astroCookies: Astro.cookies }
+      { astroCookies: Astro.cookies },
     );
 
     await sdk.setCustomerForOrder(
@@ -50,7 +50,7 @@ if (Astro.request.method === "POST") {
           lastName: cleanData.lastName,
         },
       },
-      { astroCookies: Astro.cookies }
+      { astroCookies: Astro.cookies },
     );
 
     await sdk.setOrderShippingAddress(
@@ -62,12 +62,12 @@ if (Astro.request.method === "POST") {
           phoneNumber: cleanData.phoneNumber,
         },
       },
-      { astroCookies: Astro.cookies }
+      { astroCookies: Astro.cookies },
     );
 
     await sdk.transitionToState(
       { state: "ArrangingPayment" },
-      { astroCookies: Astro.cookies }
+      { astroCookies: Astro.cookies },
     );
     const result = await sdk.addPaymentToOrder(
       {
@@ -76,7 +76,7 @@ if (Astro.request.method === "POST") {
           metadata: {},
         },
       },
-      { astroCookies: Astro.cookies }
+      { astroCookies: Astro.cookies },
     );
 
     return Astro.redirect(`/checkout/confirm/${result.addPaymentToOrder.code}`);
@@ -85,19 +85,19 @@ if (Astro.request.method === "POST") {
 ---
 
 <BaseLayout title="Checkout" description="Checkout page">
-  <div class="lg:max-w-7xl max-w-2xl mx-auto pt-8 pb-24 px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-2xl px-4 pb-24 pt-8 sm:px-6 lg:max-w-7xl lg:px-8">
     <h2 class="sr-only">Checkout</h2><nav
       aria-label="cart.progress"
-      class="hidden sm:block pb-8 mb-8 border-b"
+      class="mb-8 hidden border-b pb-8 sm:block"
     >
-      <ol role="list" class="flex space-x-4 justify-center">
+      <ol role="list" class="flex justify-center space-x-4">
         <li class="flex items-center">
           <span aria-current="page" class="text-primary-600">Shipping</span><svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
             aria-hidden="true"
-            class="w-5 h-5 text-gray-300 ml-4"
+            class="ml-4 h-5 w-5 text-gray-300"
             ><path
               fill-rule="evenodd"
               d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
@@ -109,7 +109,7 @@ if (Astro.request.method === "POST") {
             viewBox="0 0 24 24"
             fill="currentColor"
             aria-hidden="true"
-            class="w-5 h-5 text-gray-300 ml-4"
+            class="ml-4 h-5 w-5 text-gray-300"
             ><path
               fill-rule="evenodd"
               d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
@@ -139,7 +139,7 @@ if (Astro.request.method === "POST") {
                     id="emailAddress"
                     name="emailAddress"
                     autocomplete="email"
-                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                     value=""
                   />
                 </div>
@@ -157,7 +157,7 @@ if (Astro.request.method === "POST") {
                       id="firstName"
                       name="firstName"
                       autocomplete="given-name"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                       value=""
                     />
                   </div>
@@ -172,7 +172,7 @@ if (Astro.request.method === "POST") {
                       id="lastName"
                       name="lastName"
                       autocomplete="family-name"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                       value=""
                     />
                   </div>
@@ -196,7 +196,7 @@ if (Astro.request.method === "POST") {
                       name="city"
                       id="city"
                       autocomplete="address-level2"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                       value=""
                     />
                   </div>
@@ -212,7 +212,7 @@ if (Astro.request.method === "POST") {
                     <select
                       id="countryCode"
                       name="countryCode"
-                      class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                     >
                       <option value="EG">Egypt</option>
                     </select>
@@ -229,7 +229,7 @@ if (Astro.request.method === "POST") {
                     name="streetLine1"
                     id="streetLine1"
                     autocomplete="street-address"
-                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                     value=""
                   />
                 </div>
@@ -245,7 +245,7 @@ if (Astro.request.method === "POST") {
                     name="phoneNumber"
                     id="phoneNumber"
                     autocomplete="tel"
-                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                     value=""
                   />
                 </div>
@@ -304,14 +304,14 @@ if (Astro.request.method === "POST") {
 
                 <button
                   type="submit"
-                  class="bg-primary-400 flex w-full items-center justify-center space-x-2 mt-24 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  class="mt-24 flex w-full items-center justify-center space-x-2 rounded-md border border-transparent bg-primary-400 py-3 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     aria-hidden="true"
-                    class="w-5 h-5"
+                    class="h-5 w-5"
                     ><path
                       fill-rule="evenodd"
                       d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"

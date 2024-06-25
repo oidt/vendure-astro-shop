@@ -12,7 +12,7 @@ const { facets, facetValueIds } = Astro.props;
     Object.keys(facets).map((k) => {
       return (
         <div>
-          <h3 class="m-2 font-medium text-gray-700 uppercase">{k}</h3>
+          <h3 class="m-2 font-medium uppercase text-gray-700">{k}</h3>
           {facets[k].map((v) => {
             return (
               <div>
@@ -20,7 +20,7 @@ const { facets, facetValueIds } = Astro.props;
                   <input
                     name="facetValueID"
                     type="checkbox"
-                    class="h-4 w-4 m-1 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
+                    class="m-1 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                     checked={facetValueIds.includes(v.id)}
                     value={v.id}
                     onchange="this.form.submit()"

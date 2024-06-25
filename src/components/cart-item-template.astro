@@ -3,28 +3,27 @@ import { Icon } from "astro-icon/components";
 ---
 
 <template data-cart-target="lineItemTemplate">
-  <li class="py-6 flex">
+  <li class="flex py-6">
     <div
-      class="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden"
+      class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
     >
       <img
         id="lineItemImage"
         src=""
-        alt="Balloon Chair"
-        class="w-full h-full object-center object-cover"
+        class="h-full w-full object-cover object-center"
       />
-    </div><div class="ml-4 flex-1 flex flex-col">
+    </div><div class="ml-4 flex flex-1 flex-col">
       <div>
         <div class="flex justify-between text-base font-medium text-gray-900">
           <h3>
-            <a href="/products/balloon-chair" id="lineItemName"></a>
+            <a href="/" id="lineItemName"></a>
           </h3><p class="ml-4" id="lineItemPrice">$price</p>
         </div>
-      </div><div class="flex-1 flex items-center text-sm">
+      </div><div class="flex flex-1 items-center text-sm">
         <form method="get" action="/">
           <label for="lineItemQuantity" class="mr-2">Quantity</label>
           <input
-            class="h-6 border border-gray-300 rounded"
+            class="h-6 rounded border border-gray-300"
             id="lineItemQuantity"
             type="number"
             min="1"

@@ -10,13 +10,13 @@ const order = res.orderByCode;
 ---
 
 <BaseLayout title="Checkout Complete" description="Checkout confirm page">
-  <div class="lg:max-w-3xl mx-auto max-w-2xl pt-8 pb-24 px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-2xl px-4 pb-24 pt-8 sm:px-6 lg:max-w-3xl lg:px-8">
     <h2 class="sr-only">Checkout Complete</h2>
     <div class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
       <div class="lg:col-span-2">
         <div>
           <h2
-            class="text-3xl flex items-center space-x-2 sm:text-5xl font-light tracking-tight text-gray-900 my-8"
+            class="my-8 flex items-center space-x-2 text-3xl font-light tracking-tight text-gray-900 sm:text-5xl"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ const order = res.orderByCode;
               stroke-width="1.5"
               stroke="currentColor"
               aria-hidden="true"
-              class="text-green-600 w-8 h-8 sm:w-12 sm:h-12"
+              class="h-8 w-8 text-green-600 sm:h-12 sm:w-12"
               ><path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -40,35 +40,30 @@ const order = res.orderByCode;
                 <ul role="list" class="-my-6 divide-y divide-gray-200">
                   {
                     order?.lines?.map((line) => (
-                      <li class="py-6 flex">
+                      <li class="flex py-6">
                         <>
-                          <div class="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+                          <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                             <img
                               src={`${line.featuredAsset?.preview}?preset=thumb`}
-                              alt="Balloon Chair"
-                              class="w-full h-full object-center object-cover"
+                              class="h-full w-full object-cover object-center"
                             />
                           </div>
-                          <div class="ml-4 flex-1 flex flex-col">
+                          <div class="ml-4 flex flex-1 flex-col">
                             <>
                               <div>
                                 <div class="flex justify-between text-base font-medium text-gray-900">
                                   <>
-                                    <h3>
-                                      <a href="/products/balloon-chair">
-                                        {line.productVariant.name}
-                                      </a>
-                                    </h3>
+                                    <h3>{line.productVariant.name}</h3>
                                     <p class="ml-4">
                                       {formatPrice(
                                         line.unitPriceWithTax,
-                                        order.currencyCode
+                                        order.currencyCode,
                                       )}
                                     </p>
                                   </>
                                 </div>
                               </div>
-                              <div class="flex-1 flex items-center text-sm">
+                              <div class="flex flex-1 items-center text-sm">
                                 <>
                                   <div class="text-gray-800">
                                     <>
@@ -90,7 +85,7 @@ const order = res.orderByCode;
                   }
                 </ul>
               </div>
-            </div><dl class="border-t mt-6 border-gray-200 py-6 space-y-6">
+            </div><dl class="mt-6 space-y-6 border-t border-gray-200 py-6">
               <div class="flex items-center justify-between">
                 <dt class="text-sm">Subtotal</dt><dd
                   class="text-sm font-medium text-gray-900"
@@ -98,7 +93,7 @@ const order = res.orderByCode;
                   {
                     formatPrice(
                       order?.subTotalWithTax,
-                      order?.currencyCode as CurrencyCode
+                      order?.currencyCode as CurrencyCode,
                     )
                   }
                 </dd>
@@ -109,7 +104,7 @@ const order = res.orderByCode;
                   {
                     formatPrice(
                       order?.shippingWithTax,
-                      order?.currencyCode as CurrencyCode
+                      order?.currencyCode as CurrencyCode,
                     )
                   }
                 </dd>
@@ -122,7 +117,7 @@ const order = res.orderByCode;
                   {
                     formatPrice(
                       order?.totalWithTax,
-                      order?.currencyCode as CurrencyCode
+                      order?.currencyCode as CurrencyCode,
                     )
                   }
                 </dd>

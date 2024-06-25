@@ -5,26 +5,26 @@ import CartItemTemplate from "./cart-item-template.astro";
 
 <div data-controller="cart">
   <button
-    class="relative flex items-center text-blue-200 hover:text-white mx-2"
+    class="relative mx-2 flex items-center text-blue-200 hover:text-white"
     data-action="click->cart#openCart"
   >
     <Icon name="bag" size={24} />
     <span
       data-cart-target="count"
-      class="absolute hidden first-letter:-top-2 left-3 bg-red-500 text-white text-sm rounded-full w-6 h-6 items-center justify-center"
+      class="absolute left-3 hidden h-6 w-6 items-center justify-center rounded-full bg-red-500 text-sm text-white first-letter:-top-2"
     ></span>
   </button>
   <section
     data-cart-target="cartContainer"
-    class="hidden absolute z-50 left-0 right-0 top-0 bottom-0 h-screen w-screen bg-black bg-opacity-50 justify-center items-center"
+    class="absolute bottom-0 left-0 right-0 top-0 z-50 hidden h-screen w-screen items-center justify-center bg-black bg-opacity-50"
   >
-    <aside class="bg-white absolute top-0 right-0 bottom-0 w-full lg:w-[450px]">
-      <div class="fixed inset-y-0 right-0 max-w-full flex">
+    <aside class="absolute bottom-0 right-0 top-0 w-full bg-white lg:w-[450px]">
+      <div class="fixed inset-y-0 right-0 flex max-w-full">
         <div class="w-screen max-w-md translate-x-0">
           <div
-            class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll"
+            class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
           >
-            <div class="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
+            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
               <div class="flex items-start justify-between">
                 <h2
                   class="text-lg font-medium text-gray-900"
@@ -34,7 +34,7 @@ import CartItemTemplate from "./cart-item-template.astro";
                   Shopping cart
                 </h2>
 
-                <div class="ml-3 h-7 flex items-center">
+                <div class="ml-3 flex h-7 items-center">
                   <button
                     data-action="click->cart#closeCart"
                     type="button"
@@ -61,7 +61,7 @@ import CartItemTemplate from "./cart-item-template.astro";
             </div>
             <div
               data-cart-target="footer"
-              class="border-t border-gray-200 py-6 px-4 sm:px-6"
+              class="border-t border-gray-200 px-4 py-6 sm:px-6"
             >
               <div
                 class="flex justify-between text-base font-medium text-gray-900"
@@ -72,7 +72,7 @@ import CartItemTemplate from "./cart-item-template.astro";
                 Shipping will be calculated at checkout.
               </p><div class="mt-6">
                 <a
-                  class="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+                  class="flex items-center justify-center rounded-md border border-transparent bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700"
                   href="/checkout">Checkout</a
                 >
               </div>
@@ -85,7 +85,7 @@ import CartItemTemplate from "./cart-item-template.astro";
 
   <template data-cart-target="emptyTemplate">
     <div class="mt-8">
-      <div class="flex items-center justify-center h-48 text-xl text-gray-400">
+      <div class="flex h-48 items-center justify-center text-xl text-gray-400">
         Your cart is empty
       </div>
     </div>

@@ -22,6 +22,9 @@ fragment ActiveOrder on Order {
       id
       name
       sku
+      product {
+        slug
+      }
     }
     featuredAsset {
       id

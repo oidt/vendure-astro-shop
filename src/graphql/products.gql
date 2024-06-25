@@ -2,6 +2,7 @@ fragment DetailedProduct on Product {
   id
   name
   description
+  slug
   collections {
     id
     slug
@@ -37,14 +38,17 @@ fragment DetailedProduct on Product {
     currencyCode
     sku
     stockLevel
+    product {
+      slug
+    }
     featuredAsset {
       id
       preview
     }
   }
 }
-query getProductById( $id: ID!) {
-  product( id: $id) {
+query getProductById($id: ID!) {
+  product(id: $id) {
     ...DetailedProduct
   }
 }

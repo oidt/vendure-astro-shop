@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 
@@ -9,13 +9,18 @@ export default defineConfig({
   output: "server",
   vite: {
     ssr: {
-      noExternal: "graphql"
-    }, define: {
+      noExternal: "graphql",
+    },
+    define: {
       // to make env variables work on cloudflare pages we need to redefine them here
-      "process.env.VENDURE_SHOP_API": JSON.stringify(process.env.VENDURE_SHOP_API),
-      "process.env.VENDURE_CHANNEL_TOKEN": JSON.stringify(process.env.VENDURE_CHANNEL_TOKEN),
-    }
+      "process.env.VENDURE_SHOP_API": JSON.stringify(
+        process.env.VENDURE_SHOP_API,
+      ),
+      "process.env.VENDURE_CHANNEL_TOKEN": JSON.stringify(
+        process.env.VENDURE_CHANNEL_TOKEN,
+      ),
+    },
   },
   adapter: cloudflare(),
-  integrations: [tailwind(), icon()]
+  integrations: [tailwind(), icon()],
 });

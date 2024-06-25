@@ -9,22 +9,22 @@ const { facets, facetValueIds } = Astro.props;
 ---
 
 <div
-  class="fixed inset-0 translate-x-full z-40 transition-transform ease-in-out duration-500"
+  class="fixed inset-0 z-40 translate-x-full transition-transform duration-500 ease-in-out"
   data-filters-target="sidebar"
 >
   <div
-    class="ml-auto relative max-w-xs w-full h-full bg-white shadow-xl py-4 pb-12 flex flex-col overflow-y-auto translate-x-0"
+    class="relative ml-auto flex h-full w-full max-w-xs translate-x-0 flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl"
     id="headlessui-dialog-panel-:r7:"
     data-headlessui-state="open"
   >
-    <div class="px-4 flex items-center justify-between">
-      <h3 class="font-medium text-gray-700 uppercase">Filters</h3>
+    <div class="flex items-center justify-between px-4">
+      <h3 class="font-medium uppercase text-gray-700">Filters</h3>
       <hr />
 
       <button
         data-action="click->filters#toggleFilterSidebar"
         type="button"
-        class="-mr-2 w-10 h-10 bg-white p-2 rounded-md flex items-center justify-center text-gray-400"
+        class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
         tabindex="0"
         ><span class="sr-only">Close menu</span><svg
           xmlns="http://www.w3.org/2000/svg"

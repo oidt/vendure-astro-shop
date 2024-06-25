@@ -15,12 +15,12 @@ const facetValueIds = Astro.url.searchParams.getAll("facetValueID");
 
 const colRes = await sdk.getCollection(
   { slug },
-  { astroCookies: Astro.cookies }
+  { astroCookies: Astro.cookies },
 );
 
 const vals = await sdk.searchFacetValues(
   { input: { collectionSlug: slug } },
-  { astroCookies: Astro.cookies }
+  { astroCookies: Astro.cookies },
 );
 
 const prodRes = await sdk.search(
@@ -32,7 +32,7 @@ const prodRes = await sdk.search(
       // facetValueFilters: facetValueIds.map((id) => ({ and: id })),
     },
   },
-  { astroCookies: Astro.cookies }
+  { astroCookies: Astro.cookies },
 );
 
 const facets = aggregateFacetValues(vals.search.facetValues);
@@ -44,30 +44,30 @@ const products = prodRes.search.items as Array<SearchResult>;
 
 <BaseLayout title={collection.name} description={collection.description}>
   <div
-    class="mx-2 flex justify-between items-center relative"
+    class="relative mx-2 flex items-center justify-between"
     data-controller="filters"
   >
     <SideFilters facets={facets} facetValueIds={facetValueIds} />
     <h2
-      class="text-3xl sm:text-4xl font-light tracking-tight text-gray-900 my-8"
+      class="my-8 text-3xl font-light tracking-tight text-gray-900 sm:text-4xl"
     >
       {collection.name}
     </h2>
     <button
       data-action="click->filters#toggleFilterSidebar"
       type="button"
-      class="flex space-x-2 items-center border rounded p-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
+      class="ml-4 flex items-center space-x-2 rounded border p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
     >
       <span>Filters</span>
-      <Icon name="filter" class="w-5 h-5" size={24} />
+      <Icon name="filter" class="h-5 w-5" size={24} />
     </button>
   </div>
   <CollectionsGrid collections={subCollections} />
-  <div class="mt-6 grid sm:grid-cols-5 gap-x-4">
+  <div class="mt-6 grid gap-x-4 sm:grid-cols-5">
     <divn class="hidden lg:block">
       <FacetsFilter facets={facets} facetValueIds={facetValueIds} />
     </divn>
-    <div class="col-span-1 sm:col-span-5 lg:col-span-4 space-y-6">
+    <div class="col-span-1 space-y-6 sm:col-span-5 lg:col-span-4">
       <ProductsGrid products={products} />
     </div>
   </div>
